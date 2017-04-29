@@ -8,7 +8,6 @@ cp default /etc/nginx/sites-available/
 cp main.cf /etc/postfix/main.cf
 cp handle.php /www/handle.php
 
-chmod +x start.sh
 postmap /etc/postfix/transport
 newaliases
 
