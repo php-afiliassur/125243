@@ -7,10 +7,8 @@ useradd contact
 cp default /etc/nginx/sites-available/
 cp main.cf /etc/postfix/main.cf
 cp handle.php /www/handle.php
-
 postmap /etc/postfix/transport
 newaliases
-
 /etc/init.d/postfix restart
 /etc/init.d/php5-fpm restart
 /etc/init.d/nginx restart

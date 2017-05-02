@@ -15,3 +15,5 @@ $phrase_desabonnement = 'suivez ce lien pour votre désinscription.';
 $db_file = file('./database/'.$argv[1]);
 $email_body = file_get_contents('./template/'.$argv[2].'.htm');
 $email_altbody = file_get_contents('./template/'.$argv[2].'.txt');
+$pool = fopen('./pool/'.$argv[3], 'r');
+$limit_email=2;

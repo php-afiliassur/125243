@@ -2,7 +2,8 @@
 error_reporting(E_ALL);
 set_time_limit(0);
 require_once './config.php';
-require_once './swiftmailer/lib/swift_required.php';
+require_once './lib/swiftmailer/lib/swift_required.php';
+
 echo 'Lancement de la campagne: ' . date('r') . ' ...' . PHP_EOL;
 $transport = Swift_SmtpTransport::newInstance('localhost', 25);
 $mailer = Swift_Mailer::newInstance($transport);
