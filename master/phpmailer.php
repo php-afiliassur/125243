@@ -7,7 +7,7 @@ require_once './PHPMailer/PHPMailerAutoload.php';
 $mail = new PHPMailer;
 //$mail->SMTPDebug = 3;
 $mail->isSMTP();
-$mail->Host = 'localhost';
+$mail->Host = $host;
 $mail->SMTPAuth = false;
 $mail->Port = 25;
 $mail->SMTPKeepAlive = true;

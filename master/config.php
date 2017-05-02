@@ -1,16 +1,16 @@
 <?php
-$host = '';
+$host = 'regions-departements.com';
 
-$email_subject = '';
+$email_subject = 'test';
 $return_path = 'root@'.$host;
 $source_email = 'contact@'.$host;
-$source_displayname  = '';
+$source_displayname  = 'test';
 
 $replyto_email = 'contact@'.$host;
-$replyto_displayname = '';
+$replyto_displayname = 'test';
 
 $callback = 'handle.php';
-$landingpage = '';
+$landingpage = 'test';
 $phrase_desabonnement = 'suivez ce lien pour votre désinscription.';
 $db_file = file('./database/'.$argv[1]);
 $email_body = file_get_contents('./template/'.$argv[2].'.htm');
