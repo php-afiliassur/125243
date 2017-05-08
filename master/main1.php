@@ -14,7 +14,7 @@ foreach($email_file as $email_to) {
 $email_to=trim($email_to);
 
 $mail = new PHPMailer;
-$mail->Host = $host;
+$mail->Host = "localhost";
 $mail->isSMTP();
 $mail->SMTPAuth = false;
 $mail->Port = 25;
@@ -23,6 +23,7 @@ $mail->setFrom($email_from, $source_displayname);
 $mail->addReplyTo($email_from, $source_displayname);
 $mail->sender = $email_from;
 $mail->isHTML(true);
+$mail->XMailer = 'mail';
 $mail->CharSet = 'UTF-8';
 
 echo "Envoi en cours ...".PHP_EOL;
