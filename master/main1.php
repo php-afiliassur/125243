@@ -1,16 +1,17 @@
 <?php
+
 error_reporting(E_ALL);
 set_time_limit(0);
+
 require_once './config.php';
 require_once './lib/PHPMailer/PHPMailerAutoload.php';
 
 $email_counter=0;
-
-foreach($db_file as $email_to) {
-
-// generation du host
-$host=fgets($pool);
 $email_body = file_get_contents('./template/'.trim(fgets($template)));
+$host = trim(fgets($pool));
+
+foreach($email_file as $email_to) {
+$email_to=trim($email_to);
 
 $mail = new PHPMailer;
 $mail->Host = $host;
@@ -18,9 +19,9 @@ $mail->isSMTP();
 $mail->SMTPAuth = false;
 $mail->Port = 25;
 $mail->SMTPKeepAlive = true;
-$mail->setFrom($email_from.'@'.$host, $source_displayname);
-$mail->addReplyTo($email_from.'@'.$host, $source_displayname);
-$mail->sender = 'root@'.$host;
+$mail->setFrom($email_from, $source_displayname);
+$mail->addReplyTo($email_from, $source_displayname);
+$mail->sender = $email_from;
 $mail->isHTML(true);
 $mail->CharSet = 'UTF-8';
 
@@ -34,20 +35,19 @@ $email_body_final = str_replace('DESABONNEMENT', $tag_unsubscribe, $email_body);
 $email_body_final = str_replace('OPENR', $tag_opener, $email_body_final);
 $email_body_final = str_replace('CLICKR', $tag_clicker, $email_body_final);
 
-echo $email_to;
+echo $host." : ".$email_to;
 
-$mail->addAddress(trim($email_to));
+$mail->addAddress($email_to);
 $mail->Subject = $email_subject;
 $mail->Body    = $email_body_final;
 $mail->AltBody = "";
 $mail->send();
 $mail->clearAddresses();
-
-echo $email_to.PHP_EOL;
-
 $email_counter++;
+
+/*
 if($email_counter>$limit_email){
-  $host=fgets($pool); // new host
+  $host=fgets($pool);
   $mail = new PHPMailer;
   $mail->Host = $host;
   $mail->isSMTP();
@@ -58,4 +58,5 @@ if($email_counter>$limit_email){
   $email_body = file_get_contents('./template/'.fgets($template));
   $email_counter=0;
 }
+*/
 }
